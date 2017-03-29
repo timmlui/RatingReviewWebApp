@@ -1,0 +1,302 @@
+<!-- https://codepen.io/docode/pen/ZGvoXz -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RatingApp</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" type="text/css" href="./RatingApp.css">
+    <!-- External Javascript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <div class="interface col-12">
+
+<!-- ######################### USERS ######################### -->
+      <div class="tab-wrapper">
+        <h4>Users</h4>
+        <ul class="tab-menu" >
+          <li class="active">Create</li>
+          <li>Read</li>
+          <li>Update</li>
+          <li>Delete</li>
+        </ul>
+        
+        <div class="tab-content">
+
+          <!-- Create tab -->
+          <div class="user_create"> 
+            <form>
+              <div class="form_element">
+                <span class="label">username</span><br>
+                <input type="text" id="username" placeholder="(required)"><br>
+                <span class="label">firstname</span><br>
+                <input type="text" id="firstname"><br>
+                <span class="label">lastname</span><br>
+                <input type="text" id="lastname"><br>
+                <span class="label">sex</span><br>
+                <input type="text" id="sex" placeholder="M or F" default=""><br>
+                <span class="label">age</span><br>
+                <input type="text" id="age"><br><br>
+                <button type="button" onclick="createUser()">Create</button>
+              </div>
+            </form><br>
+            <div id="create-user-result"></div>
+          </div>
+
+          <!-- Read tab -->
+          <div class="user_get"> 
+            <span class="label">get all users</span><br>
+            <button type="button" onclick="getUsers()">Get</button><br><br>
+            <div id="get-users-results1"></div><br>
+
+            <span class="label">get users filtered by</span><br>
+            <div class="filters">
+              <span class="label">firstname</span><br>
+              <input type="text" id="filter_fname" placeholder="(optional)"><br>
+              <span class="label">lastname</span><br>
+              <input type="text" id="filter_lname" placeholder="(optional)"><br>
+              <span class="label">sex</span><br>
+              <input type="text" id="filter_sex" placeholder="(optional)"><br>
+              <span class="label">age</span><br>
+              <input type="text" id="filter_age" placeholder="(optional)"><br><br>
+            </div>
+            <button type="button" onclick="filterUsers()">Get</button>
+            <button type="button" onclick="clearFilters()">Clear</button><br><br>
+            <div id="get-users-results2"></div><br>
+
+            <span class="label">get user by userID</span><br>
+            <input type="text" id="get_uid" placeholder="userID">
+            <button type="button" onclick="getUserByID()">Get</button><br><br>
+            <div id="get-user-result1"></div><br>
+
+            <span class="label">get user by username</span><br>
+            <input type="text" id="get_username" placeholder="username">
+            <button type="button" onclick="getUserByUsername()">Get</button><br><br>
+            <div id="get-user-result2"></div>
+          </div>
+
+          <!-- Update tab -->
+          <div class="user_update">
+            <span class="label">*update at least one of the fields</span><br>
+            <form>
+              <div class="form_update">
+                <span class="label">_id</span><br>
+                <input type="text" id="user_id_update" placeholder="(required)"><br>
+                <span class="label">username</span><br>
+                <input type="text" id="username_update"><br>
+                <span class="label">*firstname</span><br>
+                <input type="text" id="firstname_update"><br>
+                <span class="label">*lastname</span><br>
+                <input type="text" id="lastname_update"><br>
+                <span class="label">*sex</span><br>
+                <input type="text" id="sex_update" placeholder="M or F"><br>
+                <span class="label">*age</span><br>
+                <input type="text" id="age_update"><br><br>
+                <button type="button" onclick="updateUser()">Update</button>
+              </div>
+            </form><br>
+            <div id="update-user-result"></div>
+          </div>
+
+          <!-- Delete tab -->
+          <div class="user_delete">
+            <span class="label">delete user by userID</span><br>
+            <input id="del_id" type="text" placeholder="userID">
+            <button type="button" onclick="deleteUser()">Delete</button><br><br>
+
+            <div id="del-user-result"></div>
+          </div>
+
+        </div><!-- //tab-content -->
+      </div><!-- //tab-wrapper -->
+
+
+<!-- ######################### STORES ######################### -->
+      <div class="tab-wrapper">
+        <h4>Stores</h4>
+        <ul class="tab-menu" >
+          <li class="active">Create</li>
+          <li>Read</li>
+          <li>Update</li>
+          <li>Delete</li>
+        </ul>
+        
+        <div class="tab-content">
+
+          <!-- Create tab -->
+          <div class="store_create"> 
+            <form>
+              <div class="form_element">
+                <span class="label">storename</span><br>
+                <input type="text" id="storename" placeholder="(required)"><br>
+                <span class="label">category</span><br>
+                <input type="text" id="category"><br>
+                <span class="label">address</span><br>
+                <input type="text" id="address"><br><br>
+                <button type="button" onclick="createStore()">Create</button>
+              </div>
+            </form><br>
+            <div id="create-store-result"></div>
+          </div>
+
+          <!-- Read tab -->
+          <div class="store_get"> 
+            <span class="label">get all stores</span><br>
+            <button type="button" onclick="getStores()">Get</button><br><br>
+            <div id="get-stores-results1"></div><br>
+
+            <span class="label">get stores filtered by</span><br>
+            <div class="filters">
+              <span class="label">storename</span><br>
+              <input type="text" id="filter_sname" placeholder="(optional)"><br>
+              <span class="label">category</span><br>
+              <input type="text" id="filter_cat" placeholder="(optional)"><br><br>
+            </div>
+            <button type="button" onclick="filterStores()">Get</button>
+            <button type="button" onclick="clearFilters2()">Clear</button><br><br>
+            <div id="get-stores-results2"></div><br>
+
+            <span class="label">get store by storeID</span><br>
+            <input type="text" id="get_sid" placeholder="storeID">
+            <button type="button" onclick="getStoreByID()">Get</button><br><br>
+            <div id="get-store-result1"></div><br>
+          </div>
+
+          <!-- Update tab -->
+          <div class="store_update">
+            <span class="label">*update at least one of the fields</span><br>
+            <form>
+              <div class="form_update">
+                <span class="label">_id</span><br>
+                <input type="text" id="store_id_update" placeholder="(required)"><br>
+                <span class="label">*storename</span><br>
+                <input type="text" id="storename_update"><br>
+                <span class="label">*category</span><br>
+                <input type="text" id="category_update"><br>
+                <span class="label">*address</span><br>
+                <input type="text" id="address_update"><br><br>
+                <button type="button" onclick="updateStore()">Update</button>
+              </div>
+            </form><br>
+            <div id="update-store-result"></div>
+          </div>
+
+          <!-- Delete tab -->
+          <div class="store_delete">
+            <span class="label">delete store by storeID</span><br>
+            <input id="del_sid" type="text" placeholder="storeID">
+            <button type="button" onclick="deleteStore()">Delete</button><br><br>
+
+            <div id="del-store-result"></div>
+          </div>
+
+        </div><!-- //tab-content -->
+      </div><!-- //tab-wrapper -->
+
+<!-- ######################### REVIEWS ######################### -->
+      <div class="tab-wrapper">
+        <h4>Reviews</h4>
+        <ul class="tab-menu" >
+          <li class="active">Create</li>
+          <li>Read</li>
+          <li>Update</li>
+          <li>Delete</li>
+        </ul>
+        
+        <div class="tab-content">
+
+          <!-- Create tab -->
+          <div class="review_create"> 
+            <form>
+              <div class="form_element">
+                <span class="label">userID</span><br>
+                <input type="text" id="userID" placeholder="(required)"><br>
+                <span class="label">storeID</span><br>
+                <input type="text" id="storeID" placeholder="(required)"><br>
+                <span class="label">rating</span><br>
+                <input type="text" id="rating" placeholder="(required: 0-10)"><br>
+                <span class="label">comment</span><br>
+                <input type="text" id="comment"><br><br>
+                <button type="button" onclick="createReview()">Create</button>
+              </div>
+            </form><br>
+            <div id="create-review-result"></div>
+          </div>
+
+          <!-- Read tab -->
+          <div class="review_get"> 
+            <span class="label">get review by _id</span><br>
+            <input type="text" id="get_rid" placeholder="reviewID">
+            <button type="button" onclick="getReviewByRID()">Get</button><br><br>
+            <div id="get-review-result1"></div><br>
+
+            <span class="label">get review of storeID</span><br>
+            <input type="text" id="get_review_sid" placeholder="storeID">
+            <button type="button" onclick="getReviewBySID()">Get</button><br><br>
+            <div id="get-review-result2"></div><br>
+
+            <span class="label">get review by userID</span><br>
+            <input type="text" id="get_review_uid" placeholder="userID">
+            <button type="button" onclick="getReviewByUID()">Get</button><br><br>
+            <div id="get-review-result3"></div><br>
+          </div>
+
+          <!-- Update tab -->
+          <div class="review_update">
+            <span class="label">*update at least one of the fields</span><br>
+            <form>
+              <div class="form_update">
+                <span class="label">_id</span><br>
+                <input type="text" id="review_id_update" placeholder="(required)"><br>
+                <span class="label">storeID</span><br>
+                <input type="text" id="storeID_update" placeholder="(will not change)"><br>
+                <span class="label">userID</span><br>
+                <input type="text" id="userID_update" placeholder="(will not change)"><br>
+                <span class="label">*rating</span><br>
+                <input type="text" id="rating_update" placeholder="(0-10)"><br>
+                <span class="label">*comment</span><br>
+                <input type="text" id="comment_update"><br><br>
+                <button type="button" onclick="updateReview()">Update</button>
+              </div>
+            </form><br>
+            <div id="update-review-result"></div>
+          </div>
+
+          <!-- Delete tab -->
+          <div class="review_delete">
+            <span class="label">delete review by reviewID</span><br>
+            <input id="del_by_rid" type="text" placeholder="reviewID">
+            <button type="button" onclick="deleteByRID()">Delete</button><br><br>
+            <div id="del-review-result1"></div><br>
+
+            <span class="label">delete review of storeID</span><br>
+            <input id="del_by_sid" type="text" placeholder="storeID">
+            <button type="button" onclick="deleteBySID()">Delete</button><br><br>
+            <div id="del-review-result2"></div><br>
+
+            <span class="label">delete review by userID</span><br>
+            <input id="del_by_uid" type="text" placeholder="userID">
+            <button type="button" onclick="deleteByUID()">Delete</button><br><br>
+            <div id="del-review-result3"></div>
+          </div>
+
+        </div><!-- //tab-content -->
+      </div><!-- //tab-wrapper -->
+
+
+    </div>
+
+    <script src="RatingApp.js"></script>
+    <script src="index.js"></script>
+    <script src="users.js"></script>
+    <script src="stores.js"></script>
+    <script src="reviews.js"></script>
+  </body>
+</html>
+

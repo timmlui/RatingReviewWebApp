@@ -1,0 +1,19 @@
+{
+  "name": "Assignment2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Cheuk Lok Lui",
+  "license": "",
+  "scripts": {
+    "start" : "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "cors-express": "^0.2.2",
+    "express": "^4.14.1",
+    "intersect": "^1.0.1",
+    "mongodb": "^2.2.22",
+    "mongodb-autoincrement": "^1.0.1"
+  }
+}
